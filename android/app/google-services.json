@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "804252607630",
+    "project_id": "flutter-tide",
+    "storage_bucket": "flutter-tide.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804252607630:android:a2d0efb4e49115eaec15df",
+        "android_client_info": {
+          "package_name": "com.example.tide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804252607630-lk0v4q12dqf9pd97honqd89atj6p2gf3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYAi2SgOEmvkrdeHig5mAmVdEJgzKbr6Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804252607630-lk0v4q12dqf9pd97honqd89atj6p2gf3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
