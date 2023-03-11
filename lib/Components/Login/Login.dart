@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tide/Components/Login/button_signin.dart';
+import 'package:tide/Components/Login/more_signin.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -55,126 +57,54 @@ class LoginPage extends StatelessWidget {
                     right: 0,
                     child: Column(
                       children: [
-                        SizedBox(
-                          width: 300.0,
-                          height: 50.0,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Color.fromARGB(255, 154, 157, 158),
-                            ),
-                            onPressed: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 20,
-                                  height: 20,
-                                  child: Image.asset(
-                                    'images/imagesMeditaion/may.png',
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text("Continue with Google",
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                          ),
+                        SignInBtn(
+                          onTap: () {},
+                          iconPath: 'assets/logos/google.png',
+                          textLabel: 'Sign in with Google',
+                          backgroundColor: Colors.grey.shade300,
                         ),
-                        
-                       Container(
-                        margin: EdgeInsets.only(bottom: 20,top:20),
-                        width: 300.0,
-                          height: 50.0,
-                          
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Color.fromARGB(255, 15, 156, 227),
-                            ),
-                            onPressed: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.facebook,
-                                  size: 20,
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text(
-                                  "Continue with Facebook",
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ),
-                       ),
+                        SignInBtn(
+                          onTap: () {},
+                          iconPath: 'assets/logos/facebook.png',
+                          textLabel: 'Sign in with Facebook',
+                          backgroundColor: Colors.blue.shade300,
+                        ),
+                        SizedBox(height: 50,),
                         //! các loại đăng nhập khác------------
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            CircleAvatar(
-                              radius: 20,
-                              backgroundColor:
-                                  Color.fromARGB(255, 169, 170, 167),
-                              child: IconButton(
-                                icon: Icon(
-                                  Icons.email,
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                  size: 15,
-                                ),
-                                onPressed: () {},
-                              ),
+                            SizedBox(width: 20),
+                            SignInMore(
+
+                              backgoundColor: Colors.white24,
+                              Icontype: Icons.email_outlined,
+                              iconColor: Colors.white,
+                              onTap: (){},
                             ),
-                            SizedBox(width: 10),
-                            CircleAvatar(
-                              radius: 20,
-                              backgroundColor:
-                                  Color.fromARGB(255, 169, 170, 167),
-                              child: IconButton(
-                                icon: Icon(
-                                  Icons.ad_units,
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                  size: 15,
-                                ),
-                                onPressed: () {},
-                              ),
+
+                            SignInMore(
+                              backgoundColor: Colors.white24,
+                              Icontype: Icons.ad_units_outlined,
+                              iconColor: Colors.white,
+                              onTap: (){},
                             ),
-                            SizedBox(width: 10),
-                            CircleAvatar(
-                              radius: 20,
-                              backgroundColor:
-                                  Color.fromARGB(255, 169, 170, 167),
-                              child: IconButton(
-                                icon: Icon(
-                                  Icons.add_a_photo,
-                                  color: Colors.black,
-                                  size: 15,
-                                ),
-                                onPressed: () {},
-                              ),
+
+                            SignInMore(
+                              backgoundColor: Colors.white24,
+                              Icontype: Icons.chat_bubble_outline,
+                              iconColor: Colors.white,
+                              onTap: (){},
                             ),
-                            SizedBox(width: 10),
-                            CircleAvatar(
-                              radius: 20,
-                              backgroundColor:
-                                  Color.fromARGB(255, 169, 170, 167),
-                              child: IconButton(
-                                icon: Icon(
-                                  Icons.email,
-                                  color: Colors.black,
-                                  size: 15,
-                                ),
-                                onPressed: () {},
-                              ),
+
+                            SignInMore(
+                              backgoundColor: Colors.white24,
+                              Icontype: Icons.more_horiz,
+                              iconColor: Colors.white,
+                              onTap: (){},
                             ),
+                            SizedBox(width: 20),
+
                           ],
                         ),
                         Container(

@@ -1,8 +1,9 @@
-import 'dart:math';
 
+import 'dart:math';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:tide/Components/CategoryDetails/CategoryDetailType.dart';
+import 'package:tide/Components/CategoryDetails/CategoryDetail.dart';
 import 'package:tide/Components/Page/home/relaxhome_type.dart';
 
 class Home extends StatelessWidget {
@@ -35,38 +36,7 @@ class Home extends StatelessWidget {
     'Reduce Anxiety',
     'Reduce Stress'
   ];
-  List<Map<String, dynamic>> relaxTypes = [
-    {
-      'Img': 'images/imageshomes/mua.png',
-      'Name': 'Recharge',
-      'Time': '5-10 MIN - SINGLES'
-    },
-    {
-      'Img': 'images/imageshomes/cay.png',
-      'Name': 'Before',
-      'Time': '5-10 MIN - SINGLES'
-    },
-    {
-      'Img': 'images/imageshomes/binhminh.png',
-      'Name': 'Before Class',
-      'Time': '5-10 MIN - SINGLES'
-    },
-    {
-      'Img': 'images/imageshomes/nang.png',
-      'Name': 'Sedentary',
-      'Time': '5-10 MIN - SINGLES'
-    },
-    {
-      'Img': 'images/imageshomes/mua.png',
-      'Name': 'Eye Strain',
-      'Time': '5-10 MIN - SINGLES'
-    },
-    {
-      'Img': 'images/imageshomes/mua.png',
-      'Name': 'Before Reading',
-      'Time': '5-10 MIN - SINGLES'
-    },
-  ];
+  final CollectionReference _cards = FirebaseFirestore.instance.collection('card');
   List<Icon> icons = [
     Icon(
       Icons.ac_unit,
@@ -85,6 +55,7 @@ class Home extends StatelessWidget {
       color: Colors.white,
     )
   ];
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +64,19 @@ class Home extends StatelessWidget {
         constraints: BoxConstraints(
           maxHeight: double.infinity,
         ),
-        decoration: BoxDecoration(color: Colors.black54),
+        decoration: BoxDecoration(
+          // tạo màu gradient
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color.fromARGB(255, 105, 189, 224),
+              Color.fromARGB(255, 232, 221, 148),
+              Color.fromARGB(255, 242, 227, 153),
+              Color.fromARGB(255, 142, 225, 205),
+            ],
+          ),
+        ),
         child: Column(
           children: [
             AppBar(
@@ -105,9 +88,7 @@ class Home extends StatelessWidget {
               backgroundColor: Colors.transparent,
               actions: [
                 IconButton(
-                  onPressed: () {
-                    
-                  },
+                  onPressed: () {},
                   icon: Icon(Icons.ios_share),
                 ),
                 IconButton(
@@ -190,7 +171,7 @@ class Home extends StatelessWidget {
                 margin:
                     EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 20),
                 decoration: BoxDecoration(
-                  color: Colors.white10,
+                  color: Color.fromARGB(141, 62, 61, 61),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
@@ -203,7 +184,7 @@ class Home extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         image: DecorationImage(
-                          image: AssetImage('images/imageshomes/mua.png'),
+                          image: NetworkImage("https://i.pinimg.com/564x/2a/30/ef/2a30eff09533e77d4d4ee9ea4589f1d0.jpg"),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -266,7 +247,7 @@ class Home extends StatelessWidget {
                     margin: EdgeInsets.only(left: 10),
                     child: CircleAvatar(
                       radius: 30,
-                      backgroundImage: AssetImage('images/imageshomes/mua.png'),
+                      backgroundImage: NetworkImage("https://i.pinimg.com/564x/90/39/ce/9039ced1cf29142a6430a5d740bce5e5.jpg"),
                     ),
                   ),
                   Expanded(
@@ -311,12 +292,14 @@ class Home extends StatelessWidget {
               ),
             ),
             Container(
-              color: Colors.transparent,
+              margin: EdgeInsets.only(left: 20, right: 20,),
               child: Column(
                 children: [
                   Wrap(
+                    alignment: WrapAlignment.start,
+                    crossAxisAlignment: WrapCrossAlignment.start,
                     spacing: 8.0,
-                    runSpacing: 4.0,
+                    runSpacing: 3.0,
                     children: [
                       ...List.generate(5, (index) {
                         return Theme(
@@ -333,11 +316,20 @@ class Home extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
                               side: BorderSide(
-                                color: Colors.white24,
+                                color: Color.fromARGB(255, 255, 255, 255),
                               ),
                             ),
+                            backgroundColor: Color.fromARGB(255, 255, 255, 255),
                             selected: true,
                             selectedColor: Colors.transparent,
+                            disabledColor: Color.fromARGB(255, 226, 145, 145),
+                            onSelected: (bool selected) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const CategoryDetail()));
+                            },
                           ),
                         );
                       }).map((e) => e),
@@ -372,26 +364,38 @@ class Home extends StatelessWidget {
                         Text(
                           'More',
                           style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black26,
+                            fontSize: 10,
+                            color: Colors.red,
                           ),
                         ),
                       ],
                     ),
                   ),
                   Expanded(
-                      child: Container(
-                    height: 230,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: relaxTypes
-                          .map((type) => RelaxHome_Type(
-                              Img: type['Img'],
-                              Name: type['Name'],
-                              Time: type['Time']))
-                          .toList(),
-                    ),
-                  ))
+                      child:StreamBuilder(
+                        stream: _cards.snapshots(),
+                        builder: (context,AsyncSnapshot<QuerySnapshot> streamSnapshot){
+                          if(streamSnapshot.hasData){
+                            final cardDocs = streamSnapshot.data!.docs;
+                              return Container(
+                                height: 230,
+                                child: ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: cardDocs
+                                      .map((type) => RelaxHome_Type(
+                                      Img: type['img'],
+                                      Name: type['name'],
+                                      Time: type['time']))
+                                      .toList(),
+                                ),
+                              );
+                            }
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                      )
+                  )
                 ],
               ),
             ),
@@ -421,26 +425,38 @@ class Home extends StatelessWidget {
                         Text(
                           'More',
                           style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black26,
+                            fontSize: 10,
+                            color: Colors.red,
                           ),
                         ),
                       ],
                     ),
                   ),
                   Expanded(
-                      child: Container(
-                    height: 230,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: relaxTypes
-                          .map((type) => RelaxHome_Type(
-                              Img: type['Img'],
-                              Name: type['Name'],
-                              Time: type['Time']))
-                          .toList(),
-                    ),
-                  ))
+                      child:StreamBuilder(
+                        stream: _cards.snapshots(),
+                        builder: (context,AsyncSnapshot<QuerySnapshot> streamSnapshot){
+                          if(streamSnapshot.hasData){
+                            final cardDocs = streamSnapshot.data!.docs;
+                              return Container(
+                                height: 230,
+                                child: ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: cardDocs
+                                      .map((type) => RelaxHome_Type(
+                                      Img: type['img'],
+                                      Name: type['name'],
+                                      Time: type['time']))
+                                      .toList(),
+                                ),
+                              );
+                            }
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                      )
+                  )
                 ],
               ),
             ),

@@ -43,8 +43,9 @@ class Profile extends StatelessWidget {
             ],
           ),
         ),
-        child: Container(
-          margin: EdgeInsets.only(left: 10, right: 10, top: 20),
+        child: SingleChildScrollView(
+            child: Container(
+          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -338,24 +339,56 @@ class Profile extends StatelessWidget {
                 ),
               ),
               // Container(
-              //     height: 100,
-              //     child: GridView.builder(
-              //       itemCount: 31,
-              //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              //         crossAxisCount: 4,
-              //         childAspectRatio: 1,
+              //   margin: EdgeInsets.only(top: 10),
+              //   decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(10.0),
+              //       // color: Color.fromARGB(118, 123, 124, 123),
+              //       color: Colors.greenAccent),
+              //   height: 350,
+              //   child: Column(children: [
+              //     Container(
+              //         height: 50,
+              //         child: Expanded(
+              //           child: Row(
+              //             children: [
+              //               Text('chào bạn'),
+              //               Icon(Icons.arrow_forward_ios_outlined)
+              //             ],
+              //           ),
+              //         )),
+              //     Container(
+              //       height: 100,
+              //     ),
+              //     Expanded(
+              //       child: Container(
+              //         margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+              //         child: GridView.count(
+              //           physics: NeverScrollableScrollPhysics(),
+              //           shrinkWrap: true,
+              //           crossAxisCount: 10,
+              //           crossAxisSpacing: 2,
+              //           mainAxisSpacing: 2,
+              //           children: List.generate(50, (index) {
+              //             return Container(
+              //               color: Colors.green,
+              //               width: 1,
+              //               height: 1,
+              //             );
+              //           }),
+              //         ),
               //       ),
-              //       itemBuilder: (context, index) {
-              //         return Container(
-              //           height: 1,
-              //           width: 1,
-              //           color: Colors.blue,
-              //         );
-              //       },
-              //     ))
+              //     ),
+              //   ]),
+              // ),
               Container(
+                margin: EdgeInsets.only(top: 20,bottom: 20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: Color.fromARGB(118, 123, 124, 123)
+                ),
                   height: 300,
                   child: ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
                     itemCount: relax.length,
                     itemBuilder: (context, index) {
                       return Container(
@@ -419,9 +452,10 @@ class Profile extends StatelessWidget {
                             ],
                           ));
                     },
-                  ))
+                  )),
+                  SizedBox(height: 50,)
             ],
           ),
-        ));
+        )));
   }
 }

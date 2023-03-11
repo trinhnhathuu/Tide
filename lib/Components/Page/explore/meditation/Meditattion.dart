@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tide/Components/Page/explore/meditation/meditation_child/AllMeditation.dart';
+import 'package:tide/Components/Page/explore/meditation/meditation_child/SeriesMeditation.dart';
+import 'package:tide/Components/Page/explore/meditation/meditation_child/SleepMeditation.dart';
+import 'package:tide/Components/Page/explore/meditation/meditation_child/StressMeditation.dart';
 class Meditation extends StatefulWidget {
   const Meditation({super.key});
 
@@ -19,6 +22,7 @@ class _MeditationState extends State<Meditation>with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
+        
         children: [
           Container(
             // margin: EdgeInsets.only(top: ),
@@ -36,14 +40,14 @@ class _MeditationState extends State<Meditation>with TickerProviderStateMixin {
                     borderRadius: BorderRadius.circular(10.0)
                 ),
                 tabs: [
-                  Text('All', style: TextStyle(fontSize: 10,)),
-                  Text('Series', style: TextStyle(fontSize: 10)),
-                  Text('Sleep', style: TextStyle(fontSize: 10)),
-                  Text('Stress', style: TextStyle(fontSize: 10)),
-                  Text('Beginner', style: TextStyle(fontSize: 10)),
-                  Text('Performance', style: TextStyle(fontSize: 10)),
-                  Text('Emotions', style: TextStyle(fontSize: 10)),
-                  Text('Daytime', style: TextStyle(fontSize: 10)),
+                  Text('All', style: TextStyle(fontSize: 13,)),
+                  Text('Series', style: TextStyle(fontSize: 13)),
+                  Text('Sleep', style: TextStyle(fontSize: 13)),
+                  Text('Stress', style: TextStyle(fontSize: 13)),
+                  Text('Beginner', style: TextStyle(fontSize: 13)),
+                  Text('Performance', style: TextStyle(fontSize: 13)),
+                  Text('Emotions', style: TextStyle(fontSize: 13)),
+                  Text('Daytime', style: TextStyle(fontSize: 13)),
                 ],
               ),
             ),
@@ -56,9 +60,9 @@ class _MeditationState extends State<Meditation>with TickerProviderStateMixin {
                 controller: _MtabController,
                 children: [
                  AllMeditation(),
-                 AllMeditation(),
-                 AllMeditation(),
-                 AllMeditation(),
+                 SeriesFM(),
+                 SleepFM(),
+                 StressFM(),
                  AllMeditation(),
                  AllMeditation(),
                  AllMeditation(),

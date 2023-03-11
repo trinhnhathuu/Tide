@@ -28,7 +28,7 @@ class SoundType extends StatelessWidget {
                   Expanded(
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                      child: Image.asset(
+                      child: Image.network(
                         Img_S,
                         height: 250,
                         fit: BoxFit.fill,

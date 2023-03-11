@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:tide/Components/Page/explore/meditation/meditationType/MeditaionType.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-class SeriesFM extends StatelessWidget {
-
-  final CollectionReference _seriesFM =
+class StressFM extends StatelessWidget {
+  
+  final CollectionReference _stressFM =
       FirebaseFirestore.instance.collection('meditation');
   @override
   Widget build(BuildContext context) {
     return Container(
-      
         width: 150,
         child: StreamBuilder(
-            stream: _seriesFM.snapshots(),
+            stream: _stressFM.snapshots(),
             builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
               if (streamSnapshot.hasData) {
                 final cardDos = streamSnapshot.data!.docs;
@@ -28,7 +26,7 @@ class SeriesFM extends StatelessWidget {
                           data.containsKey('name') &&
                           data.containsKey('time') &&
                           data.containsKey('id_type')&&
-                          data['id_type']!='stress') {
+                          data['id_type']!='sleep') {
                         return SizedBox(
                           width: MediaQuery.of(context).size.width / 2 -
                               15, // chia đôi chiều rộng

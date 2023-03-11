@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tide/Components/CategoryDetails/CategoryDetail.dart';
+import 'package:tide/Components/CategoryDetails/test.dart';
 import 'package:tide/Components/Login/Login.dart';
 
 class RelaxHome_Type extends StatelessWidget {
@@ -7,6 +8,16 @@ class RelaxHome_Type extends StatelessWidget {
   final String Name;
   final String Time;
   RelaxHome_Type({required this.Img, required this.Name, required this.Time});
+
+  void _showModalBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+       
+        builder: (BuildContext content) {
+          return CategoryDetail();
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +32,13 @@ class RelaxHome_Type extends StatelessWidget {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0))),
             child: InkWell(
-              onTap: () => {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const CategoryDetail()))
-              },
+              onTap: () => _showModalBottomSheet(context),
               child: Column(
                 children: <Widget>[
                   Expanded(
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                      child: Image.asset(
+                      child: Image.network(
                         Img,
                         height: 150,
                         fit: BoxFit.fill,

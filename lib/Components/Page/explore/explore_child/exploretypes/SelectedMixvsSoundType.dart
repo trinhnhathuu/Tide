@@ -25,10 +25,10 @@ class MixvsSoundType extends StatelessWidget {
                 children: <Widget>[
                  Expanded(
                    child:  Container(
-                     margin: EdgeInsets.only(top:30),
+                     margin: EdgeInsets.only(top:20),
                      child: ClipRRect(
                        borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                       child: Image.asset(
+                       child: Image.network(
                          Img_MS,
                          height: 80,
                          fit: BoxFit.fill,

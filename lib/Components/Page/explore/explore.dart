@@ -33,12 +33,12 @@ class _ExploreState extends State<Explore> with TickerProviderStateMixin {
                     Expanded(
                       child: TabBar(
                         indicatorSize: TabBarIndicatorSize.label,
-                        indicatorWeight: 5.0,
+                        indicatorWeight: 2.0,
                         indicatorColor: Colors.red,
                         isScrollable: true,
                         labelColor: Colors.white,
                         unselectedLabelColor: Colors.blueGrey,
-                        padding: EdgeInsets.all(10.0),
+                        padding: EdgeInsets.all(6.0),
                         controller: _tabController,
                         tabs: [
                           Text('Explore', style: TextStyle(fontSize: 18)),
@@ -50,24 +50,31 @@ class _ExploreState extends State<Explore> with TickerProviderStateMixin {
                     ),
                     Container(
                       width: 50,
-                      child: Icon(Icons.search_outlined,color: Colors.white,),
+                      child: Icon(
+                        Icons.search_outlined,
+                        color: Colors.white,
+                      ),
                     )
                   ],
                 )),
           ),
-          Container(
-            width: double.maxFinite,
-            height: MediaQuery.of(context).size.height,
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                ExploreChild(),
-                Meditation(),
-                Sleep(),
-                Text('chào các bạn G'),
-              ],
-            ),
-          )
+         Container(
+           color: Colors.black,
+           width: double.maxFinite,
+           height: MediaQuery.of(context).size.height,
+
+
+           child: TabBarView(
+             controller: _tabController,
+             children: [
+               ExploreChild(),
+               Meditation(),
+               Sleep(),
+               ExploreChild(),
+             ],
+           ),
+         ),
+
         ],
       ),
     );

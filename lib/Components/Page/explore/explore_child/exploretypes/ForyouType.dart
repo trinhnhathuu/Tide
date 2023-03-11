@@ -37,7 +37,7 @@ class ForyouType extends StatelessWidget {
                         height: 20,
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          child: Image.asset(
+                          child: Image.network(
                             AvatarU,
                             fit: BoxFit.cover,
                           ),
@@ -72,7 +72,7 @@ class ForyouType extends StatelessWidget {
                       height: 50,
                       child: ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        child: Image.asset(
+                        child: Image.network(
                           ImgTypeU,
                           fit: BoxFit.cover,
                         ),

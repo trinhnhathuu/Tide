@@ -16,9 +16,9 @@ class MeditationType extends StatelessWidget {
     return  Padding(
         padding: EdgeInsets.only(left: 0),
         child: Container(
-          
-          width: 150,
-          height: 220,
+          margin: EdgeInsets.only(left: 10),
+          width: 210,
+          height: 230,
           child: Card(
             elevation: 0,
             color: Colors.transparent,
@@ -27,38 +27,32 @@ class MeditationType extends StatelessWidget {
             child: InkWell(
               onTap: () => print('test'),
               child: Column(
-               
-                crossAxisAlignment: CrossAxisAlignment.center,
+               mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                    // Container(
-                    //   width: 50,
-                    //   height: 20,
-                    //   color: Colors.greenAccent,
-                    //   child: Text('free'),
-                    // ),
                   Expanded(
                     child: ClipRRect(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                      child: Image.asset(
+                      child: Image.network(
                         ImageM,
                         height: 150,
                         fit: BoxFit.fill,
-                        width: 150,
+                        width: 200,
                       ),
                     ),
                   ),
                   ListTile(
-                    contentPadding: EdgeInsets.only(left: 15),
+                    contentPadding: EdgeInsets.zero,
                     title: Text(
                       TitleM,
                       style: TextStyle(
-                        fontSize: 13,
+                        fontSize: 15,
                         color: Colors.white,
                       ),
                     ),
                     subtitle: Text(DescriptionM,
-                        style: TextStyle(color: Colors.grey, fontSize: 10)),
+                        style: TextStyle(color: Colors.grey, fontSize: 12)),
                   )
                 ],
               ),

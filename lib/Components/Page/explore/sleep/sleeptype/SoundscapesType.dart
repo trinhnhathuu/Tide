@@ -17,9 +17,12 @@ class SoundscapesType extends StatelessWidget {
     return  Padding(
         padding: EdgeInsets.only(left: 0),
         child: Container(
-          color: Colors.grey,
+          decoration: BoxDecoration(
+              color: Color.fromARGB(118, 123, 124, 123),
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          ) ,
           width: 150,
-          height: 300,
+          height: 200,
           child: Card(
             elevation: 0,
             color: Colors.transparent,
@@ -28,24 +31,23 @@ class SoundscapesType extends StatelessWidget {
             child: InkWell(
               onTap: () => print('test'),
               child: Column(
-
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                 SizedBox(height: 50,),
+                 SizedBox(height: 20,),
                   Expanded(
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                      child: Image.asset(
+                      child: Image.network(
                         ImgSS,
-                        height: 150,
+                        height: 100,
                         fit: BoxFit.fill,
-                        width: 150,
+                        width: 100,
                       ),
                     ),
                   ),
                   ListTile(
-                    contentPadding: EdgeInsets.only(left: 15,top:20),
+                    contentPadding: EdgeInsets.only(left: 15),
                     title: Text(
                       NameSS,
                       style: TextStyle(
@@ -54,7 +56,7 @@ class SoundscapesType extends StatelessWidget {
                       ),
                     ),
                     subtitle: Text(NumberOfPepole,
-                        style: TextStyle(color: Colors.grey, fontSize: 10)),
+                        style: TextStyle(color: Colors.white, fontSize: 10)),
                   )
                 ],
               ),

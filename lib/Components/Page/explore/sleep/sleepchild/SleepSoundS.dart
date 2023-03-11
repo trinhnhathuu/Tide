@@ -1,68 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:tide/Components/Page/explore/sleep/sleeptype/SoundscapesType.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class SleepSoundS extends StatelessWidget {
- 
-List<Map<String, dynamic>>soundscapes = [
-    {
-      'Img': 'images/imagesMeditaion/color.png',
-      'Name': 'Way of light',
-      'NumberOfPepole': 'How to Make Learning Easier?',
-    },
-    {
-      'Img': 'images/imagesMeditaion/color.png',
-      'Name': 'Underwater',
-      'NumberOfPepole': 'Four Ways to Have a Good Sleep',
-    },
-    {
-      'Img':'images/imagesMeditaion/color.png',
-      'Name': 'YogaNidra Soft and Swift',
-      'NumberOfPepole': 'never give up',
-    },
-    {
-      'Img':'images/imagesMeditaion/color.png',
-      'Name': 'YogaNidra stream Purification',
-      'NumberOfPepole': 'never give up',
-    },
-    {
-      'Img':'images/imagesMeditaion/color.png',
-      'Name': 'New Year',
-      'NumberOfPepole': 'never give up',
-    },
-    {
-      'Img': 'images/imagesMeditaion/color.png',
-      'Name': 'Stressed',
-      'NumberOfPepole': 'How to Make Learning Easier?',
-    },
-    {
-      'Img': 'images/imagesMeditaion/color.png',
-      'Name': 'Sleep',
-      'NumberOfPepole': 'Four Ways to Have a Good Sleep',
-    },
-    {
-      'Img':'images/imagesMeditaion/color.png',
-      'Name': 'Restful Sleep',
-      'NumberOfPepole': 'never give up',
-    },
-  ];
+  final CollectionReference _sleepSS =
+      FirebaseFirestore.instance.collection('sleepEx');
+  DocumentSnapshot? documentSnapshot;
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 15,left: 15),
+      margin: EdgeInsets.only(right: 20, left: 25),
       width: 150,
-
-      child: ListView(
-        children: <Widget>[
-          Wrap(
-            spacing: 30,
-            runSpacing: 20,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: soundscapes.map((type) => SoundscapesType(
-                ImgSS: type['Img'],
-                NameSS: type['Name'],
-                NumberOfPepole:type ['NumberOfPepole'])).toList(),
-          ),
-          SizedBox(height: 100,)
-        ],
+      child: Builder(
+        builder: (context) {
+          return Builder(
+            builder: (context) {
+              return StreamBuilder(
+                stream: _sleepSS.snapshots(),
+                builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapShot) {
+                  if (streamSnapShot.hasData) {
+                    final cardDocs = streamSnapShot.data!.docs;
+                    return Container(
+                      child: Wrap(
+                        spacing: 5,
+                        runSpacing: 5,
+                        children: cardDocs
+                            .map((type) => SoundscapesType(
+                                NameSS: type['name'],
+                                ImgSS: type['img'],
+                                NumberOfPepole: type['listeners']))
+                            .toList(),
+                      ),
+                    );
+                  }
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              );
+            }
+          );
+        }
       ),
     );
   }

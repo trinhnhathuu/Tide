@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   cloud_firestore: ^4.3.1
   flutter_multiselect: ^1.0.0
+  flutter_staggered_animations: ^1.1.1
 
 dev_dependencies:
   flutter_test:
@@ -62,27 +63,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-  
-    - images/imageshomes/mua.png
-    - images/imageshomes/hoanghon.png
-    - images/imageshomes/hoa.png
-    - images/imageshomes/cay.png
-    - images/imageshomes/binhminh.png
-    - images/imageshomes/nen.png
-    - images/imageshomes/tra.png
-    - images/imageshomes/nhai.png
-    - images/imageshomes/sun.png
-    - images/imageshomes/song.png
-    - images/imageshomes/nang.png
-    - images/imagesMeditaion/color.png
-    - images/imagesMeditaion/moon1.png
-    - images/imagesMeditaion/moon2.png
-    - images/imagesMeditaion/moon3.png
-    - images/imagesMeditaion/da.png
-    - images/imagesMeditaion/may.png
-    - images/background.png
-    - images/logo/Google.png
-    - images/logo/google1.png
+    - assets/logos/
    
 
 

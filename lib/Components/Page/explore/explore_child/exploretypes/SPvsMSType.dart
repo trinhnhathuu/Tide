@@ -32,7 +32,7 @@ class SmvsMSType extends StatelessWidget {
                   Expanded(
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                      child: Image.asset(
+                      child:Image.network(
                         Img_SM,
                         height: 150,
                         fit: BoxFit.fill,

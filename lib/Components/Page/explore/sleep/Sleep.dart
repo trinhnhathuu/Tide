@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tide/Components/Page/explore/meditation/meditation_child/SleepMeditation.dart';
 import 'package:tide/Components/Page/explore/sleep/sleepchild/SleepSoundS.dart';
 class Sleep extends StatefulWidget {
   const Sleep({super.key});
@@ -18,6 +19,7 @@ class _SleepState extends State<Sleep>with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Container(
+
       child: Column(
         children: [
           Container(
@@ -31,7 +33,7 @@ class _SleepState extends State<Sleep>with TickerProviderStateMixin {
                 unselectedLabelColor: Colors.blueGrey,
                 padding: EdgeInsets.only(left: 20,top:5,right: 5,bottom: 5),
                 indicator: BoxDecoration(
-                    color: Colors.grey,
+                    color: Color.fromARGB(118, 123, 124, 123),
                     borderRadius: BorderRadius.circular(10.0)
                 ),
                 tabs: [
@@ -45,7 +47,7 @@ class _SleepState extends State<Sleep>with TickerProviderStateMixin {
             child: TabBarView(
               controller: _StabController,
               children: [
-                Text('chao cac banj',style: TextStyle(color: Colors.white),),
+                SleepFM(),
                 SleepSoundS(),
               ],
             ),
