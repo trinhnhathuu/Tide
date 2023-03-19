@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tide/Components/CategoryDetails/CategoryDetail.dart';
-import 'package:tide/Components/CategoryDetails/test.dart';
 import 'package:tide/Components/Login/Login.dart';
 
 class RelaxHome_Type extends StatelessWidget {

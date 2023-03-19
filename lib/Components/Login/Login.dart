@@ -1,13 +1,35 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tide/Components/Login/button_signin.dart';
 import 'package:tide/Components/Login/more_signin.dart';
+import 'package:tide/Components/Page/home/home.dart';
+
+import '../Page/profile/profile.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
+  signInWGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser!.authentication;
+    // final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+    User? user = userCredential.user;
+    print(user?.email);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    // ignore: unnecessary_new
+    return Scaffold(
         body: Container(
       width: double.maxFinite,
       height: double.maxFinite,
@@ -29,10 +51,10 @@ class LoginPage extends StatelessWidget {
           Align(
             alignment: Alignment.topLeft,
             child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(Icons.close)),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.close)),
           ),
           Container(
             margin: const EdgeInsets.only(top: 100),
@@ -58,7 +80,27 @@ class LoginPage extends StatelessWidget {
                     child: Column(
                       children: [
                         SignInBtn(
-                          onTap: () {},
+                          onTap: () async {
+                            try {
+                              await signInWGoogle();
+                              // ScaffoldMessenger.of(context).showSnackBar(
+                              //     SnackBar(
+                              //         content: Text('Đăng nhập thành công')));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Profile()));
+                              
+                            } catch (e) {
+                              // ScaffoldMessenger.of(context).showSnackBar(
+                              //     SnackBar(
+                              //         content: Text('Đăng nhập thất bại')));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Profile()));
+                            }
+                          },
                           iconPath: 'assets/logos/google.png',
                           textLabel: 'Sign in with Google',
                           backgroundColor: Colors.grey.shade300,
@@ -69,62 +111,57 @@ class LoginPage extends StatelessWidget {
                           textLabel: 'Sign in with Facebook',
                           backgroundColor: Colors.blue.shade300,
                         ),
-                        SizedBox(height: 50,),
+                        SizedBox(
+                          height: 50,
+                        ),
                         //! các loại đăng nhập khác------------
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(width: 20),
                             SignInMore(
-
                               backgoundColor: Colors.white24,
                               Icontype: Icons.email_outlined,
                               iconColor: Colors.white,
-                              onTap: (){},
+                              onTap: () {},
                             ),
-
                             SignInMore(
                               backgoundColor: Colors.white24,
                               Icontype: Icons.ad_units_outlined,
                               iconColor: Colors.white,
-                              onTap: (){},
+                              onTap: () {},
                             ),
-
                             SignInMore(
                               backgoundColor: Colors.white24,
                               Icontype: Icons.chat_bubble_outline,
                               iconColor: Colors.white,
-                              onTap: (){},
+                              onTap: () {},
                             ),
-
                             SignInMore(
                               backgoundColor: Colors.white24,
                               Icontype: Icons.more_horiz,
                               iconColor: Colors.white,
-                              onTap: (){},
+                              onTap: () {},
                             ),
                             SizedBox(width: 20),
-
                           ],
                         ),
                         Container(
                           alignment: Alignment.center,
                           margin: EdgeInsets.only(left: 50),
-                            child: ListTile(
-                            title: Text(
-                              "i agree to the fllowing tems",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 10),
-                            ),
-                            leading: Radio(
-                                value: 1,
-                                groupValue: 1,
-                                onChanged: ((value) => {}),
-                                activeColor: Colors.red
-                                )),
-                                
-                          ),
-                        
+                          child: ListTile(
+                              title: Text(
+                                "i agree to the fllowing tems",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 10),
+                              ),
+                              leading: Radio(
+                                  value: 1,
+                                  groupValue: 1,
+                                  onChanged: ((value) => {}),
+                                  activeColor: Colors.red)),
+                        ),
+
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

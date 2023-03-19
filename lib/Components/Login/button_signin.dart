@@ -23,7 +23,7 @@ class SignInBtn extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
-          primary: backgroundColor,
+          backgroundColor: backgroundColor,
           // shape: const StadiumBorder(),
         ),
         child: Padding(
