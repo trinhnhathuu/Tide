@@ -40,6 +40,8 @@ dependencies:
   flutter_staggered_animations: ^1.1.1
   firebase_auth: ^4.0.0
   google_sign_in: ^6.0.2
+  bloc: ^8.1.1
+  
 
 
 dev_dependencies:

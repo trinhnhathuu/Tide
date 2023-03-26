@@ -1,10 +1,14 @@
-import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tide/Components/Page/explore/explore.dart';
-import 'package:tide/Components/Page/home/home.dart';
-import 'package:tide/Components/Page/profile/profile.dart';
+
+
+import 'package:tide/views/home/home.dart';
+import 'package:tide/views/profile/profile.dart';
+// ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
+
+import 'Routes.dart';
+import 'views/explore/explore/explore.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -24,10 +28,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-       routes: {
-    '/home': (context) => Home(),
-   
-  },
+      routes: Routes.routes,
       home: const MyHomePage(title: 'Home Page'),
     );
   }
@@ -48,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final tabs = [
     Home(),
    const Explore(),
-    Profile(),
+    const Profile(),
   ];
 
   @override
@@ -69,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
           unselectedItemColor: Colors.blueGrey,
           type: BottomNavigationBarType.shifting,
           iconSize: 24,
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
@@ -81,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 backgroundColor: Color.fromARGB(255, 0, 0, 0)),
             BottomNavigationBarItem(
                 icon: Icon(Icons.person),
-                label: 'Proflie',
+                label: 'Profile',
                 backgroundColor: Color.fromARGB(255, 0, 0, 0)),
           ],
           currentIndex: _index,
