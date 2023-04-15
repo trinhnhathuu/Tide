@@ -1,94 +1,58 @@
-
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-
-
-import 'package:tide/views/home/home.dart';
-import 'package:tide/views/profile/profile.dart';
 // ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
-
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:tide/provider/google_login_provider.dart';
 import 'Routes.dart';
-import 'views/explore/explore/explore.dart';
+import 'package:provider/provider.dart';
+import 'notification.dart';
+import 'views/home_page.dart';
+
+
 Future<void> main() async {
+  // NotificationServices notificationServices = NotificationServices();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  // notificationServices.firebaseInit();
+  // notificationServices.getToken().then((value) => {
+  //   print("Token: "),
+  //   print(value),
+  // });
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  NotificationServices notificationServices = NotificationServices();
+  void initState() {
+    super.initState();
+    notificationServices.firebaseInit();
+    notificationServices.getToken().then((value) => {
+      print("Token: "),
+      print(value),
+    });
+  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: '',
-      theme: ThemeData(
-
-        primarySwatch: Colors.blue,
-      ),
-      routes: Routes.routes,
-      home: const MyHomePage(title: 'Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
- int _index = 0;
-  final tabs = [
-    Home(),
-   const Explore(),
-    const Profile(),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
- 
-    return Scaffold(
-        extendBodyBehindAppBar: true,
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              tabs[_index],
-              // Login(),
-            ],
-          ),
+    return ChangeNotifierProvider(
+      create: (context) => GoogleSignInProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          unselectedItemColor: Colors.blueGrey,
-          type: BottomNavigationBarType.shifting,
-          iconSize: 24,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-              backgroundColor: Color.fromARGB(255, 0, 0, 0),
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.explore_outlined),
-                label: 'Explore',
-                backgroundColor: Color.fromARGB(255, 0, 0, 0)),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: 'Profile',
-                backgroundColor: Color.fromARGB(255, 0, 0, 0)),
-          ],
-          currentIndex: _index,
-          onTap: (index) {
-            setState(() => {_index = index});
-          },
-        ));
+        routes: Routes.routes,
+        home:  const HomePage(),
+      ),
+    );
   }
 }

@@ -1,28 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 import '../../Routes.dart';
+import '../../provider/google_login_provider.dart';
 import '../../widgets/login_widget/button_signin.dart';
 import '../../widgets/login_widget/more_signin.dart';
+import '../homepage/bottombar.dart';
 import '../profile/profile.dart';
+import '../../notification.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class LoginPage extends StatelessWidget {
-  User? user;
-
   LoginPage({super.key});
-  signInWGoogle() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser!.authentication;
-    AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-    UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithCredential(credential);
-     user = userCredential.user;
-    // print(user?.email);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,25 +68,18 @@ class LoginPage extends StatelessWidget {
                     child: Column(
                       children: [
                         SignInBtn(
-                          onTap: () async {
-                            try {
-                              await signInWGoogle();
-                              // ScaffoldMessenger.of(context).showSnackBar(
-                              //     SnackBar(
-                              //         content: Text('Đăng nhập thành công')));
-                              Navigator.pushReplacementNamed(
-                                  context, Routes.profile,
-                                  arguments: user?.displayName);
-                              print(user?.displayName);
-                            } catch (e) {
-                              // ScaffoldMessenger.of(context).showSnackBar(
-                              //     SnackBar(
-                              //         content: Text('Đăng nhập thất bại')));
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>const Profile()));
-                            }
+                          onTap: () {
+                            final provider = Provider.of<GoogleSignInProvider>(
+                                context,
+                                listen: false);
+                            provider.registerOnLoggedIn(() {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MyHomePage()),
+                              );
+                            });
+                            provider.LogInGoogle();
                           },
                           iconPath: 'assets/logos/google.png',
                           textLabel: 'Sign in with Google',
@@ -108,14 +91,14 @@ class LoginPage extends StatelessWidget {
                           textLabel: 'Sign in with Facebook',
                           backgroundColor: Colors.blue.shade300,
                         ),
-                       const SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
                         //? các loại đăng nhập khác------------
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                           const SizedBox(width: 20),
+                            const SizedBox(width: 20),
                             SignInMore(
                               backgoundColor: Colors.white24,
                               Icontype: Icons.email_outlined,
@@ -161,16 +144,16 @@ class LoginPage extends StatelessWidget {
 
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
+                          children: const [
+                            Text(
                               "Terms of Service",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 10,
                                   fontWeight: FontWeight.bold),
                             ),
-                            const SizedBox(width: 10),
-                            const Text(
+                            SizedBox(width: 10),
+                            Text(
                               "Privacy Policy",
                               style: TextStyle(
                                   color: Colors.white,

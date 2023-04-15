@@ -9,8 +9,6 @@ import'../../widgets/home_widget/relaxhome_type.dart';
 import '../../widgets/home_widget/chose_type.dart';
 
 
-
-
 class Home extends StatelessWidget {
   static const Color transparent = Color(0x00000000);
   final List<Map<String, dynamic>> _relax = [
