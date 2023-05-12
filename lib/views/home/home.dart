@@ -1,13 +1,11 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 // ignore: unused_import
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-import'../../widgets/home_widget/relaxhome_type.dart';
+import 'package:just_audio/just_audio.dart';
+import '../../widgets/sleep_widiget/music_sleep.dart';
+import '../../widgets/home_widget/relaxhome_type.dart';
 import '../../widgets/home_widget/chose_type.dart';
-
 
 class Home extends StatelessWidget {
   static const Color transparent = Color(0x00000000);
@@ -30,7 +28,8 @@ class Home extends StatelessWidget {
     }
   ];
   final themeData = ThemeData(canvasColor: Colors.transparent);
-  final chipShape = const StadiumBorder(side: BorderSide(color: Colors.black12));
+  final chipShape =
+      const StadiumBorder(side: BorderSide(color: Colors.black12));
   String time = '5-10 MIN - SINGLES';
   final labels = [
     'Sleep',
@@ -39,7 +38,8 @@ class Home extends StatelessWidget {
     'Reduce Anxiety',
     'Reduce Stress'
   ];
-  final CollectionReference _cards = FirebaseFirestore.instance.collection('card');
+  final CollectionReference _cards =
+      FirebaseFirestore.instance.collection('card');
   List<Icon> icons = [
     const Icon(
       Icons.ac_unit,
@@ -60,7 +60,6 @@ class Home extends StatelessWidget {
   ];
 
   Home({super.key});
- 
 
   @override
   Widget build(BuildContext context) {
@@ -132,25 +131,36 @@ class Home extends StatelessWidget {
                 ),
               ),
               Container(
-                height: 78,
-                margin: const EdgeInsets.only(top: 350, left: 20, right: 20),
-                child:Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    
-                   Chose(text: 'Focus',icon: Icons.filter_tilt_shift,),
-                    Chose(text: 'Sleep',icon: Icons.bedtime,),
-                    Chose(text: 'Nap',icon: Icons.tonality_sharp,),
-                    Chose(text: 'Breathe',icon: Icons.energy_savings_leaf_outlined,),
-                 
-                ],)
-                  
-                
-              ),
+                  height: 78,
+                  margin: const EdgeInsets.only(top: 350, left: 20, right: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Chose(
+                        text: 'Focus',
+                        icon: Icons.filter_tilt_shift,
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AudioPlayerWidget()));
+                        },
+                      ),
+                      Chose(text: 'Sleep', icon: Icons.bedtime, onTap: () {}),
+                      Chose(
+                          text: 'Nap',
+                          icon: Icons.tonality_sharp,
+                          onTap: () {}),
+                      Chose(
+                          text: 'Breathe',
+                          icon: Icons.energy_savings_leaf_outlined,
+                          onTap: () {}),
+                    ],
+                  )),
               Container(
                   height: 80,
-                  margin:
-                      const EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 20),
+                  margin: const EdgeInsets.only(
+                      top: 30, left: 20, right: 20, bottom: 20),
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(141, 62, 61, 61),
                     borderRadius: BorderRadius.circular(10),
@@ -165,7 +175,8 @@ class Home extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           image: const DecorationImage(
-                            image: NetworkImage("https://i.pinimg.com/564x/2a/30/ef/2a30eff09533e77d4d4ee9ea4589f1d0.jpg"),
+                            image: NetworkImage(
+                                "https://i.pinimg.com/564x/2a/30/ef/2a30eff09533e77d4d4ee9ea4589f1d0.jpg"),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -178,7 +189,8 @@ class Home extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  margin: const EdgeInsets.only(top: 10, left: 10),
+                                  margin:
+                                      const EdgeInsets.only(top: 10, left: 10),
                                   child: const Text(
                                     'Daily Quote',
                                     style: TextStyle(
@@ -187,7 +199,8 @@ class Home extends StatelessWidget {
                                   ),
                                 ),
                                 Container(
-                                  margin: const EdgeInsets.only(top: 5, left: 10),
+                                  margin:
+                                      const EdgeInsets.only(top: 5, left: 10),
                                   child: const Text(
                                     'Winter is a time to gather around the fire ',
                                     style: TextStyle(
@@ -216,7 +229,8 @@ class Home extends StatelessWidget {
                   )),
               Container(
                 height: 80,
-                margin: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 20),
+                margin: const EdgeInsets.only(
+                    top: 10, left: 20, right: 20, bottom: 20),
                 decoration: BoxDecoration(
                   color: Colors.blueGrey,
                   borderRadius: BorderRadius.circular(10),
@@ -228,7 +242,8 @@ class Home extends StatelessWidget {
                       margin: const EdgeInsets.only(left: 10),
                       child: const CircleAvatar(
                         radius: 30,
-                        backgroundImage: NetworkImage("https://i.pinimg.com/564x/90/39/ce/9039ced1cf29142a6430a5d740bce5e5.jpg"),
+                        backgroundImage: NetworkImage(
+                            "https://i.pinimg.com/564x/90/39/ce/9039ced1cf29142a6430a5d740bce5e5.jpg"),
                       ),
                     ),
                     Expanded(
@@ -325,7 +340,8 @@ class Home extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                      margin: const EdgeInsets.only(left: 20, right: 20, bottom: 5),
+                      margin:
+                          const EdgeInsets.only(left: 20, right: 20, bottom: 5),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -353,30 +369,29 @@ class Home extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                        child:StreamBuilder(
-                          stream: _cards.snapshots(),
-                          builder: (context,AsyncSnapshot<QuerySnapshot> streamSnapshot){
-                            if(streamSnapshot.hasData){
-                              final cardDocs = streamSnapshot.data!.docs;
+                        child: StreamBuilder(
+                            stream: _cards.snapshots(),
+                            builder: (context,
+                                AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                              if (streamSnapshot.hasData) {
+                                final cardDocs = streamSnapshot.data!.docs;
                                 return SizedBox(
                                   height: 230,
                                   child: ListView(
                                     scrollDirection: Axis.horizontal,
                                     children: cardDocs
                                         .map((type) => RelaxHome_Type(
-                                        Img: type['img'],
-                                        Name: type['name'],
-                                        Time: type['time']))
+                                            Img: type['img'],
+                                            Name: type['name'],
+                                            Time: type['time']))
                                         .toList(),
                                   ),
                                 );
                               }
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          }
-                        )
-                    )
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }))
                   ],
                 ),
               ),
@@ -386,7 +401,8 @@ class Home extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                      margin: const EdgeInsets.only(left: 20, right: 20, bottom: 5),
+                      margin:
+                          const EdgeInsets.only(left: 20, right: 20, bottom: 5),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -414,30 +430,29 @@ class Home extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                        child:StreamBuilder(
-                          stream: _cards.snapshots(),
-                          builder: (context,AsyncSnapshot<QuerySnapshot> streamSnapshot){
-                            if(streamSnapshot.hasData){
-                              final cardDocs = streamSnapshot.data!.docs;
+                        child: StreamBuilder(
+                            stream: _cards.snapshots(),
+                            builder: (context,
+                                AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                              if (streamSnapshot.hasData) {
+                                final cardDocs = streamSnapshot.data!.docs;
                                 return SizedBox(
                                   height: 230,
                                   child: ListView(
                                     scrollDirection: Axis.horizontal,
                                     children: cardDocs
                                         .map((type) => RelaxHome_Type(
-                                        Img: type['img'],
-                                        Name: type['name'],
-                                        Time: type['time']))
+                                            Img: type['img'],
+                                            Name: type['name'],
+                                            Time: type['time']))
                                         .toList(),
                                   ),
                                 );
                               }
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          }
-                        )
-                    )
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }))
                   ],
                 ),
               ),

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:tide/views/homepage/bottombar.dart';
 import 'package:tide/views/profile/profile.dart';
 
+import '../notification.dart';
 import '../views/home/home.dart';
 
 
@@ -17,6 +18,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+   NotificationServices notificationServices = NotificationServices();
+  void initState() {
+    super.initState();
+    notificationServices.requestNotificationPermission();
+    notificationServices.firebaseInit();
+    notificationServices.getDeviceToken().then((value) => {
+          print("Device Token: "),
+          print(value),
+
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
