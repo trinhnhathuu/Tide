@@ -2,28 +2,31 @@
 import 'package:flutter/material.dart';
 
 class CategoryDetail extends StatelessWidget {
-  const CategoryDetail({super.key});
+  final String Name;
+  final String Time;
+  final String Img;
+  const CategoryDetail(
+      {super.key, required this.Name, required this.Time, required this.Img});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
           margin: const EdgeInsets.only(top: 20),
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
             ),
             image: DecorationImage(
-              image: NetworkImage(
-                  "https://i.pinimg.com/564x/a8/98/21/a89821c3d05b9ca93b66712a53f9c19b.jpg"),
+              image: NetworkImage(Img),
               fit: BoxFit.cover,
             ),
           ),
           child: Column(
             children: [
               SizedBox(
-                  height: 200,
+                  height: 300,
                   child: Container(
                     margin: const EdgeInsets.only(top: 20, left: 10, right: 10),
                     child: Column(
@@ -55,7 +58,8 @@ class CategoryDetail extends StatelessWidget {
                               children: [
                                 Container(
                                   decoration: BoxDecoration(
-                                    color: const Color.fromARGB(95, 195, 210, 223),
+                                    color:
+                                        const Color.fromARGB(95, 195, 210, 223),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   width: 25,
@@ -69,7 +73,8 @@ class CategoryDetail extends StatelessWidget {
                                 Container(
                                   margin: const EdgeInsets.only(left: 10),
                                   decoration: BoxDecoration(
-                                    color: const Color.fromARGB(95, 195, 210, 223),
+                                    color:
+                                        const Color.fromARGB(95, 195, 210, 223),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   width: 25,
@@ -111,21 +116,22 @@ class CategoryDetail extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                      margin: const EdgeInsets.only(right: 10, left: 10, top: 10),
+                      margin:
+                          const EdgeInsets.only(right: 10, left: 10, top: 10),
                       child: Column(
                         children: [
                           Align(
                             alignment: Alignment.topLeft,
                             child: Column(
-                              children: const [
+                              children: [
                                 Text(
-                                  'Recharge',
-                                  style: TextStyle(
+                                  Name,
+                                  style: const TextStyle(
                                       color: Colors.white, fontSize: 20),
                                 ),
                                 Text(
-                                  '10-15 Min-Singles',
-                                  style: TextStyle(
+                                  Time,
+                                  style: const TextStyle(
                                       color: Colors.white, fontSize: 10),
                                 ),
                               ],
@@ -133,80 +139,103 @@ class CategoryDetail extends StatelessWidget {
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  
                             children: [
                               Container(
                                 margin: const EdgeInsets.only(top: 10),
-                                width: 150,
-                                height: 40,
+                                width: 200,
+                                height: 70,
                                 decoration: BoxDecoration(
-                                  color: const Color.fromARGB(95, 195, 210, 223),
+                                  color:
+                                      const Color.fromARGB(95, 195, 210, 223),
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(color: Colors.white),
                                 ),
-                                child: Row(children: [
-                                  SizedBox(
-                                    width: 100,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          margin: const EdgeInsets.only(left: 10),
-                                          width: 30,
-                                          height: 30,
-                                          decoration: const BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10)),
-                                            image: DecorationImage(
-                                              image: NetworkImage(
-                                                  "https://i.pinimg.com/564x/02/9b/5c/029b5c634d8bbf838165d049e07d2230.jpg"),
-                                              fit: BoxFit.cover,
+                                child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(
+                                        width: 100,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                              margin: const EdgeInsets.only(
+                                                  left: 10),
+                                              width: 50,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                        Radius.circular(50)),
+                                                image: DecorationImage(
+                                                  image: NetworkImage(Img),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                        Column(
-                                          children: const [
-                                            Text(
-                                              'teacher',
-                                              style: TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 136, 134, 134),
-                                                  fontSize: 7),
-                                            ),
-                                            Text(
-                                              'andrew',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 10),
-                                            ),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: const [
+                                                Text(
+                                                  'teacher',
+                                                  style: TextStyle(
+                                                      color: Color.fromARGB(
+                                                          255, 136, 134, 134),
+                                                      fontSize: 7),
+                                                ),
+                                                Text(
+                                                  'andrew',
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 10),
+                                                ),
+                                              ],
+                                            )
                                           ],
-                                        )
-                                      ],
-                                    ),
-                                  )
-                                ]),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin:
+                                            const EdgeInsets.only(right: 10),
+                                        child: const Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.white,
+                                          size: 15,
+                                        ),
+                                      )
+                                    ]),
                               ),
                               Container(
+                                alignment: Alignment.center,
                                 margin: const EdgeInsets.only(top: 10),
-                                width: 100,
-                                height: 40,
+                                width: 150,
+                                height: 70,
                                 decoration: BoxDecoration(
-                                  color: const Color.fromARGB(95, 195, 210, 223),
+                                  color:
+                                      const Color.fromARGB(95, 195, 210, 223),
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(color: Colors.white),
                                 ),
+                                child: const Text('15 Min',style:TextStyle(color: Colors.white,fontSize: 15),),
                               ),
                             ],
                           ),
                           const SizedBox(
                             height: 10,
                           ),
-                          const Text(
+                            Container(
+                              margin: EdgeInsets.all(15),
+                            child:  Text(
                             'Recharge yourself through breathing, and awaken your entire body while stretching.',
                             style: TextStyle(
                                 color: Color.fromARGB(255, 110, 108, 108),
-                                fontSize: 10),
+                                fontSize: 15),
                           ),
+                          )
                         ],
                       ),
                     ),
@@ -217,15 +246,23 @@ class CategoryDetail extends StatelessWidget {
           ),
         ),
         floatingActionButton: Container(
-          margin: const EdgeInsets.only(left: 10, right: 15, bottom: 10),
-          alignment: Alignment.center,
-          width: 300,
-          height: 30,
-          color: const Color.fromARGB(255, 230, 128, 128),
-          child: const Text(
-            'Start',
-            style: TextStyle(color: Colors.white),
-          ),
-        ));
+            margin: const EdgeInsets.only(left: 10, right: 15, bottom: 10),
+            alignment: Alignment.center,
+            width: 300,
+            height: 30,
+            color: Color.fromARGB(255, 235, 181, 55),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Icon(Icons.lock, color: Colors.white, size: 15),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  'Start',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            )));
   }
 }

@@ -47,7 +47,9 @@ dependencies:
   provider: ^6.0.5
   app_settings: ^4.2.0
   just_audio: ^0.9.32
-  audioplayer: ^0.8.1
+  audioplayers: ^4.0.1
+  firebase_storage: ^11.2.0
+  firebase_core: ^2.12.0
 
   
 

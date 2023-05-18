@@ -58,7 +58,14 @@ class Home extends StatelessWidget {
       color: Colors.white,
     )
   ];
-
+void _showModalBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        builder: (BuildContext content) {
+          return AudioPlayerWidget();
+        });
+  }
   Home({super.key});
 
   @override
@@ -140,21 +147,22 @@ class Home extends StatelessWidget {
                         text: 'Focus',
                         icon: Icons.filter_tilt_shift,
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => AudioPlayerWidget()));
+                          _showModalBottomSheet(context);
                         },
                       ),
                       Chose(text: 'Sleep', icon: Icons.bedtime, onTap: () {}),
                       Chose(
                           text: 'Nap',
                           icon: Icons.tonality_sharp,
-                          onTap: () {}),
+                          onTap: () {
+                          _showModalBottomSheet(context);
+                        },),
                       Chose(
                           text: 'Breathe',
                           icon: Icons.energy_savings_leaf_outlined,
-                          onTap: () {}),
+                          onTap: () {
+                          _showModalBottomSheet(context);
+                        },),
                     ],
                   )),
               Container(
@@ -287,53 +295,7 @@ class Home extends StatelessWidget {
                   ],
                 ),
               ),
-              // Container(
-              //   margin: EdgeInsets.only(left: 20, right: 20,),
-              //   child: Column(
-              //     children: [
-              //       Wrap(
-              //         alignment: WrapAlignment.start,
-              //         crossAxisAlignment: WrapCrossAlignment.start,
-              //         spacing: 8.0,
-              //         runSpacing: 3.0,
-              //         children: [
-              //           ...List.generate(5, (index) {
-              //             return Theme(
-              //               data: themeData,
-              //               child: ChoiceChip(
-              //                 avatar: icons[min(index, icons.length - 1)],
-              //                 label: Text(
-              //                   labels[index],
-              //                   style: TextStyle(
-              //                     color: Colors.white,
-              //                     fontSize: 10,
-              //                   ),
-              //                 ),
-              //                 shape: RoundedRectangleBorder(
-              //                   borderRadius: BorderRadius.circular(20.0),
-              //                   side: BorderSide(
-              //                     color: Color.fromARGB(255, 255, 255, 255),
-              //                   ),
-              //                 ),
-              //                 backgroundColor: Color.fromARGB(255, 255, 255, 255),
-              //                 selected: true,
-              //                 selectedColor: Colors.transparent,
-              //                 disabledColor: Color.fromARGB(255, 226, 145, 145),
-              //                 onSelected: (bool selected) {
-              //                   Navigator.push(
-              //                       context,
-              //                       MaterialPageRoute(
-              //                           builder: (context) =>
-              //                               const CategoryDetail()));
-              //                 },
-              //               ),
-              //             );
-              //           }).map((e) => e),
-              //         ],
-              //       )
-              //     ],
-              //   ),
-              // ),
+              
               Container(
                 height: 250,
                 color: Colors.transparent,

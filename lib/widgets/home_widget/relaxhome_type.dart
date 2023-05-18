@@ -12,9 +12,8 @@ class RelaxHome_Type extends StatelessWidget {
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,
-       
         builder: (BuildContext content) {
-          return const CategoryDetail();
+          return  CategoryDetail(Name: Name, Time: Time,Img: Img,);
         });
   }
 
