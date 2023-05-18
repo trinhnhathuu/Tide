@@ -58,14 +58,15 @@ class Home extends StatelessWidget {
       color: Colors.white,
     )
   ];
-void _showModalBottomSheet(BuildContext context) {
+  void _showModalBottomSheet(BuildContext context) {
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,
         builder: (BuildContext content) {
-          return AudioPlayerWidget();
+          return const AudioPlayerWidget();
         });
   }
+
   Home({super.key});
 
   @override
@@ -150,19 +151,26 @@ void _showModalBottomSheet(BuildContext context) {
                           _showModalBottomSheet(context);
                         },
                       ),
-                      Chose(text: 'Sleep', icon: Icons.bedtime, onTap: () {}),
                       Chose(
-                          text: 'Nap',
-                          icon: Icons.tonality_sharp,
+                          text: 'Sleep',
+                          icon: Icons.bedtime,
                           onTap: () {
-                          _showModalBottomSheet(context);
-                        },),
+                            _showModalBottomSheet(context);
+                          }),
                       Chose(
-                          text: 'Breathe',
-                          icon: Icons.energy_savings_leaf_outlined,
-                          onTap: () {
+                        text: 'Nap',
+                        icon: Icons.tonality_sharp,
+                        onTap: () {
                           _showModalBottomSheet(context);
-                        },),
+                        },
+                      ),
+                      Chose(
+                        text: 'Breathe',
+                        icon: Icons.energy_savings_leaf_outlined,
+                        onTap: () {
+                          _showModalBottomSheet(context);
+                        },
+                      ),
                     ],
                   )),
               Container(
@@ -295,7 +303,6 @@ void _showModalBottomSheet(BuildContext context) {
                   ],
                 ),
               ),
-              
               Container(
                 height: 250,
                 color: Colors.transparent,
