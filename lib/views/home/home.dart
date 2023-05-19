@@ -9,24 +9,6 @@ import '../../widgets/home_widget/chose_type.dart';
 
 class Home extends StatelessWidget {
   static const Color transparent = Color(0x00000000);
-  final List<Map<String, dynamic>> _relax = [
-    {
-      'text': 'Focus',
-      "icon": Icons.filter_tilt_shift,
-    },
-    {
-      'text': 'Sleep',
-      "icon": Icons.bedtime,
-    },
-    {
-      'text': 'Nap',
-      "icon": Icons.tonality_sharp,
-    },
-    {
-      'text': 'Breath',
-      "icon": Icons.energy_savings_leaf_outlined,
-    }
-  ];
   final themeData = ThemeData(canvasColor: Colors.transparent);
   final chipShape =
       const StadiumBorder(side: BorderSide(color: Colors.black12));

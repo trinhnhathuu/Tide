@@ -116,7 +116,7 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              //setting the music cover
+             
 
               ClipRRect(
                 borderRadius: BorderRadius.circular(50.0),
@@ -131,11 +131,11 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
               const SizedBox(
                 height: 10.0,
               ),
-              const Text(
-                "Summer",
-                style: TextStyle(
-                    color: Colors.white, fontSize: 36, letterSpacing: 6),
-              ),
+              // const Text(
+              //   "Summer",
+              //   style: TextStyle(
+              //       color: Colors.white, fontSize: 36, letterSpacing: 6),
+              // ),
               //Setting the seekbar
               const SizedBox(
                 height: 50.0,

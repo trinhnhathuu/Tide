@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../views/categoryDetails/CategoryDetail.dart';
+
 class SmvsMSType extends StatelessWidget {
   final String Img_SM;
   final String Name_SM;
@@ -11,6 +13,14 @@ class SmvsMSType extends StatelessWidget {
       required this.Name_SM,
       required this.Time_SM})
       : super(key: key);
+ void _showModalBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        builder: (BuildContext content) {
+          return  CategoryDetail(Name: Name_SM, Time: Time_SM,Img: Img_SM,);
+        });
+  }
 
  @override
   Widget build(BuildContext context) {
@@ -25,7 +35,7 @@ class SmvsMSType extends StatelessWidget {
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0))),
             child: InkWell(
-              onTap: () => print('test'),
+              onTap: () => _showModalBottomSheet(context),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
